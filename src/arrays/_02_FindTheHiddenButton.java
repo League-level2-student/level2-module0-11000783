@@ -8,6 +8,7 @@ package arrays;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +23,7 @@ public class _02_FindTheHiddenButton implements ActionListener {
 
 	JButton[] button;
 	// 2 create an int variable called hiddenButton
-	int hiddenbutton;
+	int hiddenButton;
 
 	public static void main(String[] args) {
 		new _02_FindTheHiddenButton().start();
@@ -60,12 +61,17 @@ public class _02_FindTheHiddenButton implements ActionListener {
 
 		// 13. initialize the hiddenButton variable to a random number less than the int
 		// created int step 3
-
+		hiddenButton = new Random().nextInt(num);
 		// 14. Set the text of the JButton located at hiddenButton the read "ME"
-
+		button[hiddenButton].setText("");
 		// 15. Use Thread.sleep(100); to pause the program.
 		// Surround it with a try/catch
-
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// 16. Set the text of the JButton located at hiddenButton to be blank.
 
 	}
@@ -75,7 +81,12 @@ public class _02_FindTheHiddenButton implements ActionListener {
 		JButton buttonClicked = (JButton) e.getSource();
 
 		// 17. if the hiddenButton is clicked, tell the user that they win.
+		if (buttonClicked == button[hiddenButton]) {
+			JOptionPane.showMessageDialog(null, "You won");
+		} else {
+			// 18. else tell them to try again
+			JOptionPane.showMessageDialog(null, "You lost, try again");
+		}
 
-		// 18. else tell them to try again
 	}
 }
